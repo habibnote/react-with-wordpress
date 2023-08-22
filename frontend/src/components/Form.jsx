@@ -72,7 +72,7 @@ export default function Form() {
   } else {
     return (
       <div>
-        <form action="" className="container" onSubmit={handleSubmit}>
+        <form action="" className="contain" onSubmit={handleSubmit}>
           <div className="header">
             <h2>Login Form</h2>
           </div>

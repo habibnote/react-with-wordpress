@@ -1,16 +1,19 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 const InsertPost = () => {
    const data = {
       title: '',
       content: '',
       userID: '',
-      token: ''
+      token: '',
+      loader: false,
     };
     const [ inputData, setInputData ] = useState( data );
     const siteUrl = "http://rootsite.local";
     const token = localStorage.getItem( 'token' );
-  
+    const navigate = useNavigate();
+      
     const handleChange = (e) => {
       setInputData({
         ...inputData,
@@ -37,53 +40,63 @@ const InsertPost = () => {
             }
          })
          .then(( res ) => {
-            console.log ( "res" , res);
+            setInputData( {
+               ...inputData,
+               loader: true,
+               userID : res.data.author
+            } )
+            console.log( "res" , res );
          })
          .catch(( err ) => {
             console.log ( "err" , err);
          })
       }
     };
-   return (
-      <div>
-         <form action="" className="container" onSubmit = { handleSubmit }>
-         <div className="header">
-            <h2>Submit Your Post</h2>
-         </div>
+   if ( inputData.loader ){
+      return navigate(`/post/${inputData.userID}`);
+   } else {
+      return (
          <div>
-            <input
-               type = "text"
-               placeholder = "Post Title"
-               name = "title"
-               value = { inputData.title }
-               onChange = { handleChange }
-            />
-         </div>
-         <div>
-            <textarea 
-               name="content" 
-               type="text" 
-               placeholder="Post Content" 
-               cols="30" 
-               rows="10" 
-               value={ inputData.content } 
-               onChange={ handleChange } >
-            </textarea> 
-         </div>
-         <div>
+            <form action="" className="contain" onSubmit = { handleSubmit }>
+            <div className="header">
+               <h2>Submit Your Post</h2>
+            </div>
+            <div>
                <input
-               type="email"
-               placeholder="Enter Email"
-               name="email"
-               value={ inputData.email }
-               onChange={ handleChange }
-            />
-         </div>
-         <div className="btn-div">
-            <button type="submit">Save Post</button>
-         </div>
-         </form>
-    </div>
-   )
+                  type = "text"
+                  placeholder = "Post Title"
+                  name = "title"
+                  value = { inputData.title }
+                  onChange = { handleChange }
+               />
+            </div>
+            <div>
+               <textarea 
+                  name="content" 
+                  type="text" 
+                  placeholder="Post Content" 
+                  cols="30" 
+                  rows="10" 
+                  value={ inputData.content } 
+                  onChange={ handleChange } >
+               </textarea> 
+            </div>
+            <div>
+                  <input
+                  type="email"
+                  placeholder="Enter Email"
+                  name="email"
+                  value={ inputData.email }
+                  onChange={ handleChange }
+               />
+            </div>
+            <div className="btn-div">
+               <button type="submit">Save Post</button>
+            </div>
+            </form>
+       </div>
+      )
+   }
+   
 }
 export default InsertPost;
