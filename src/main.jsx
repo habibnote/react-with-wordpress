@@ -6,6 +6,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Main from "./component/Main/Main.jsx";
 import Home from "./component/Home/Home.jsx";
 import Login from "./component/Login/Login.jsx";
+import PostForm from "./component/PostFrom/PostForm.jsx";
+import AllPost from "./component/AllPost/AllPost.jsx";
+
+import { UserProvider } from "./component/UserProvider.jsx/UserProvider.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,11 +23,22 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login></Login>,
       },
+      {
+        path: "/postform",
+        element: <PostForm></PostForm>,
+      },
+      {
+        path: "/allpost",
+        element: <AllPost></AllPost>,
+      },
     ],
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router}> </RouterProvider>
+    <UserProvider>
+      {" "}
+      <RouterProvider router={router}> </RouterProvider>
+    </UserProvider>
   </React.StrictMode>
 );
