@@ -68,7 +68,7 @@ const InsertPost = () => {
          <div>
             <form action="" className="contain" onSubmit = { handleSubmit }>
             <div className="header">
-               <h2>Submit Your Post</h2>
+               <h2>Create New Post</h2>
             </div>
             <div>
                <input

@@ -43,7 +43,7 @@ export default function ShowPost() {
                   <p className="card-text" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
                </div>
                <div className="card-footer text-muted">
-                  2 days ago
+                  <h4> 2 days ago</h4>
                </div>
             </div>
         ))
