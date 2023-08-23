@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-
 import { useEffect } from "react";
+
 function Login() {
   const [error, setError] = useState([]);
   const [nonce, setNonce] = useState("");
@@ -9,14 +9,13 @@ function Login() {
   useEffect(() => {
     fetchNonce();
   }, []);
-
+  
   const fetchNonce = async () => {
     try {
       const response = await fetch(
         "http://localhost/wordpress/wp-json/custom-auth-api/v1/nonce"
       );
       const data = await response.json();
-
       setNonce(data.nonce);
       setIsLoading(false);
     } catch (error) {
