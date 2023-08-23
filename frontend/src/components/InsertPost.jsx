@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState , useEffect} from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 const InsertPost = () => {
    const data = {
@@ -80,15 +80,6 @@ const InsertPost = () => {
                   value={ inputData.content } 
                   onChange={ handleChange } >
                </textarea> 
-            </div>
-            <div>
-                  <input
-                  type="email"
-                  placeholder="Enter Email"
-                  name="email"
-                  value={ inputData.email }
-                  onChange={ handleChange }
-               />
             </div>
             <div className="btn-div">
                <button type="submit">Save Post</button>

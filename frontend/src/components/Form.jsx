@@ -67,7 +67,7 @@ export default function Form() {
 
   };
   
-  if ( inputData.loggedIn || localStorage.getItem( " token " ) ){
+  if ( inputData.loggedIn && localStorage.getItem( "token" ) ){
     return navigate("/post");
   } else {
     return (
