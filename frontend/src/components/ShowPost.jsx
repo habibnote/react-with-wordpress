@@ -41,7 +41,6 @@ export default function ShowPost() {
                <div className="card-body">
                   <h5 className="card-title"> { post.title.rendered }</h5>
                   <p className="card-text" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
-                  <a href="#" className="btn btn-primary">Go somewhere</a>
                </div>
                <div className="card-footer text-muted">
                   2 days ago

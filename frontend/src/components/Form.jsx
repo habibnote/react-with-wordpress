@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export default function Form() {
   const data = {
     username: '',
     userNiceName: '',
-    email: '',
     password: '',
     loggedIn: false,
     error: ''
@@ -61,8 +61,12 @@ export default function Form() {
         })
       })
     
-    if( ! inputData.username || ! inputData.email || ! inputData.password ) {
-      alert ("All Fields Are Required!");
+    if( ! inputData.username || ! inputData.password ) {
+      Swal.fire({
+        title: 'Warning',
+        text: 'All Fields Are Required!',
+        icon: 'warning', // success, error, warning, info
+      });
     }
 
   };
@@ -72,7 +76,7 @@ export default function Form() {
   } else {
     return (
       <div>
-        <form action="" className="contain" onSubmit={handleSubmit}>
+        <form action="" className="contain" onSubmit={ handleSubmit }>
           <div className="header">
             <h2>Login Form</h2>
           </div>
@@ -82,15 +86,6 @@ export default function Form() {
               placeholder="Enter Your Username"
               name="username"
               value={inputData.username}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <input
-              type="email"
-              placeholder="Enter Your Email"
-              name="email"
-              value={inputData.email}
               onChange={handleChange}
             />
           </div>

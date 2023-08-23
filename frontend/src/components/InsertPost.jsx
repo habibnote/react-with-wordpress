@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const InsertPost = () => {
    const data = {
       title: '',
@@ -22,9 +23,12 @@ const InsertPost = () => {
     };
     const handleSubmit = (e) => {
       e.preventDefault();
-  
-      if( ! inputData.title || ! inputData.content || ! inputData.email ) {
-        alert ("All Fields Are Required!");
+      if( ! inputData.title || ! inputData.content ) {
+        Swal.fire({
+         title: 'Warning',
+         text: 'All Fields Are Required!',
+         icon: 'warning', // success, error, warning, info
+       });
       }
       else {
          const newPost = {
@@ -53,6 +57,11 @@ const InsertPost = () => {
       }
     };
    if ( inputData.loader ){
+      Swal.fire({
+         title: 'Success!',
+         text: 'Email Has Been Sent Successfully',
+         icon: 'success', // success, error, warning, info
+       });
       return navigate(`/post/${inputData.userID}`);
    } else {
       return (
@@ -82,7 +91,7 @@ const InsertPost = () => {
                </textarea> 
             </div>
             <div className="btn-div">
-               <button type="submit">Save Post</button>
+               <button type="submit" >Save Post</button>
             </div>
             </form>
        </div>
