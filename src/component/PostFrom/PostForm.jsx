@@ -9,12 +9,12 @@ const PostForm = () => {
   // const [email, setEmail] = useState("");
   const [nonce, setNonce] = useState(""); // State to store nonce
 
-  useEffect(() => {
-    // Fetch nonce from cookies
-    const customNonce = Cookies.get("custom_nonce");
-    setNonce(customNonce);
-    console.log("nonce in post", nonce);
-  }, []);
+  // useEffect(() => {
+  //   // Fetch nonce from cookies
+  //   const customNonce = Cookies.get("custom_nonce");
+  //   setNonce(customNonce);
+  //   console.log("nonce in post", nonce);
+  // }, []);
   const { userID, setUserID } = useContext(UserContext);
 
   const data = {
