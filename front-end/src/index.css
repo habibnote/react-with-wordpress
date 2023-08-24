@@ -1,0 +1,180 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+a{
+  color:cadetblue !important;
+}
+/*==================*/
+/*===HEADER STYLE===*/
+/*==================*/
+.header-wrapper{
+  padding: 20px 0;
+}
+.header-wrapper .logo-area h1 a{
+  color:cadetblue;
+}
+.header-wrapper a{
+  text-decoration: none;
+  color: #222;
+
+}
+.header-wrapper .navigation ul{
+  list-style-type: none;
+}
+.header-wrapper .navigation ul li a{
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  color:#5b5b5b;
+}
+.header-wrapper .navigation ul li a:hover{
+  color: #222;
+  transition: .3s all ease;
+}
+
+/*==================*/
+/*===LOGIN PAGE STYLE===*/
+/*==================*/
+.login-page-wrapper{
+  width: 50%;
+  margin:auto;
+  margin-top: 50px;
+  margin-bottom: 180px;
+}
+.login-page-wrapper h1{
+  font-size:46px;
+  font-weight: bold;
+  color: #222;
+}
+.login-page-wrapper form{
+  width: 100%;
+}
+.login-page-wrapper form label{
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 10px;
+  display: block;
+}
+.login-page-wrapper form textarea{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  height: 200px;
+  margin-bottom: 50px;
+  outline: 0;
+}
+.login-page-wrapper form input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: none;
+  outline:0;
+}
+.login-page-wrapper form input[type=submit]{
+  width: 100%;
+  padding: 8px 10px;
+  background-color: cadetblue;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+  margin-top: 20px;
+}
+.login-page-wrapper form button{
+  width: 100%;
+  padding: 8px 10px;
+  background-color: cadetblue;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+  margin-top: 20px;
+}
+.login-page-wrapper form button:hover{
+  background-color: rgb(0, 101, 105);
+}
+
+/*============================*/
+/*===LATEST POST PAGE STYLE===*/
+/*============================*/
+.lat-post-wrapper{
+  width: 100%;
+}
+.lat-post-wrapper h1{
+  margin-bottom: 30px;
+  font-size: 28px;
+  border: 1px solid #ddd;
+  padding:10px;
+  text-align: center;
+  font-weight: bold;
+}
+.lat-post-wrapper .single-post{
+  margin-bottom: 30px;
+  border: 1px solid #ddd;
+  padding: 10px;
+
+}
+.lat-post-wrapper .single-post img{
+  width: 100%;
+  height: 250px;
+}
+.lat-post-wrapper .single-post a{
+  text-decoration: none;
+}
+.lat-post-wrapper .single-post a h2{
+  color: #222;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.lat-post-wrapper .single-post a h2:hover{
+  transition: .3s all ease;
+  color: cadetblue;
+}
+
+.lat-post-wrapper .single-post a p{
+  color: #222;
+}
+
+/*============================*/
+/*===FOOTER STYLE===*/
+/*============================*/
+.footer-wrapper{
+    background-color: #222;
+    padding: 10px;
+}
+.footer-wrapper p{
+  text-align: center;
+  color: #ddd;
+  margin-bottom: 0 !important;
+}
+
+/*==================*/
+/*===SINGLE POST ===*/
+/*==================*/
+.single-post-wrapper{
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+.single-post-wrapper h1{
+  border-bottom: 2px solid #000;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+.single-post-wrapper img{
+  width: 100%;
+  height: auto;
+  margin-bottom: 30px;
+}
+.single-post-wrapper img p{
+  margin-bottom: 30px;
+}
