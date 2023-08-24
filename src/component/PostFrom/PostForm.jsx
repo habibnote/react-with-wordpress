@@ -37,8 +37,6 @@ const PostForm = () => {
 
     console.log("post", inputData);
 
-    // Handle form submission here
-
     // try {
     //   const response = await axios.post(
     //     "http://localhost/wordpress/wp-json/custom-auth-api/v1/create-post",

@@ -8,7 +8,7 @@ const AllPost = () => {
   useEffect(() => {
     console.log("userContext from allpost", userID);
   }, [userID]);
-  const user = localStorage.getItem("user");
+  // const user = localStorage.getItem("user");
   useEffect(() => {
     if (userID) {
       axios

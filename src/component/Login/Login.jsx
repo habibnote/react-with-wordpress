@@ -64,62 +64,7 @@ function Login() {
   //   }
   // };
 
-  // const handleClick = async (event) => {
-  //   event.preventDefault();
-  // const form = event.target;
-  // const email = form.email.value;
-  // const username = form.username.value;
-  // const password = form.password.value;
-  //   const loginData = {
-  //     username: username,
-  //     password: password,
-  //   };
-  //   console.log(loginData);
-  //   const siteUrl = "http://rootsite.local";
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost/wordpress/wp-json/custom-auth-api/v1/login",
-  //       {
-  //         username: email,
-  //         password: password,
-  //       }
-  //     );
-
-  //     if (response.status === 200) {
-  //       const token = response.data.token;
-  //       console.log("Authentication successful");
-  //       console.log("JWT Token:", token);
-
-  //       // Store the JWT token securely (e.g., in localStorage)
-  //       localStorage.setItem("jwtToken", token);
-
-  //       // You can redirect the user to a protected page or perform other actions
-  //     } else {
-  //       setError("Authentication failed");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error during authentication:", error);
-  //     setError("An error occurred during authentication");
-  //   }
-  // };
-
   ////////////////jwt
-
-  // const siteUrl = "http://localhost/wordpress";
-
-  // axios
-  //   .post(`${siteUrl}/wp-json/jwt-auth/v1/token`, loginData)
-  //   .then((response) => {
-  //     console.warn(response.data);
-  //     if (undefined === response.data.token) {
-  //       console.log("error occured");
-  //       return;
-  //     }
-  //     const { token, username } = response.data;
-  //     localStorage.setItem("token", token);
-  //     localStorage.setItem("username", username);
-
-  //   });
 
   const data = {
     username: "",

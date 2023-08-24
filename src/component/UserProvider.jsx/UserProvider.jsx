@@ -4,7 +4,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [userID, setUserID] = useState("");
-  console.log("from usecontext", userID);
+  console.log("testing from usecontext", userID);
 
   useEffect(() => {
     const storedUserID = localStorage.getItem("userID");
