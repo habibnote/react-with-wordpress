@@ -4,7 +4,7 @@ import UserContext from "../UserProvider.jsx/UserProvider";
 
 const Navbar = () => {
   const { userID, setUserID } = useContext(UserContext);
-  console.log("logout id", userID);
+  // console.log("logout id", userID);
   const handlelogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userName");

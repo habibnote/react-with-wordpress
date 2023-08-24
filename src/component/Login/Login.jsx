@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const [error, setError] = useState([]);
-  // const [nonce, setNonce] = useState("");
-  // const [isLoading, setIsLoading] = useState(true);
+  const [nonce, setNonce] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -21,7 +21,8 @@ function Login() {
   //     );
   //     const data = await response.json();
   //     console.log("nonce", data);
-  //     Cookies.set("custom_nonce", data.nonce);
+  //     // Cookies.set("custom_nonce", data.nonce);
+  //     localStorage.setItem("custom_nonce", data.nonce);
   //     setNonce(data.nonce);
   //     setIsLoading(false);
   //   } catch (error) {
@@ -29,42 +30,6 @@ function Login() {
   //     setIsLoading(false);
   //   }
   // };
-
-  // const handleClick = async (event) => {
-  //   event.preventDefault();
-  //   const form = event.target;
-  //   const email = form.email.value;
-  //   const password = form.password.value;
-
-  //   try {
-  //     console.log("Sending request with nonce:", nonce);
-  //     const response = await axios.post(
-  //       "http://localhost/wordpress/wp-json/custom-auth-api/v1/login",
-  //       {
-  //         username: email,
-  //         password: password,
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           "X-WP-Nonce": nonce,
-  //         },
-  //       }
-  //     );
-
-  //     if (response.status === 200) {
-  //       console.log("Auth successful");
-  //       console.log(email, password);
-  //     } else {
-  //       setError("Auth failed");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error during POST request:", error);
-  //     setError("An error occurred during authentication");
-  //   }
-  // };
-
-  ////////////////jwt
 
   const data = {
     username: "",

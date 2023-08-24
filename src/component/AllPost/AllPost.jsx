@@ -8,11 +8,20 @@ const AllPost = () => {
   useEffect(() => {
     console.log("userContext from allpost", userID);
   }, [userID]);
-  // const user = localStorage.getItem("user");
+  // const custom_nonce = localStorage.getItem("custom_nonce");
+
   useEffect(() => {
     if (userID) {
+      // console.log("custom_nonce", custom_nonce);
       axios
-        .get(`http://localhost/wordpress/wp-json/wp/v2/posts?author=${userID}`)
+        .get(
+          `http://localhost/wordpress/wp-json/wp/v2/posts?author=${userID}`
+          // {
+          //   headers: {
+          //     "X-WP-Nonce": custom_nonce,
+          //   },
+          // }
+        )
         .then((response) => {
           setUserPosts(response.data);
         })
