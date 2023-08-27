@@ -4,21 +4,21 @@ import { useContext } from "react";
 import UserContext from "../UserProvider.jsx/UserProvider";
 const AllPost = () => {
   const [post, setUserPosts] = useState([]);
-  const { userID } = useContext(UserContext);
-  useEffect(() => {
-    console.log("userContext from allpost", userID);
-  }, [userID]);
+  // const { userID } = useContext(UserContext);
+  // useEffect(() => {
+  //   console.log("userContext from allpost", userID);
+  // }, [userID]);
   // const custom_nonce = localStorage.getItem("custom_nonce");
 
+  const author_id = localStorage.getItem("author_id");
+  console.log("all author id", author_id);
   useEffect(() => {
-    if (userID) {
-      // console.log("custom_nonce", custom_nonce);
-
+    if (author_id) {
       //  .get(`http://localhost/wordpress/wp-json/wp/v2/posts?author=${userID}`)
       axios;
       axios
         .get(
-          `http://localhost/wordpress/wp-json/custom-rest-get-plugin/v1/get-posts/${userID}`
+          `http://localhost/wordpress/wp-json/custom-rest-get-plugin/v1/get-posts/${author_id}`
         )
         .then((response) => {
           console.log("get", response);
@@ -28,7 +28,7 @@ const AllPost = () => {
           console.error("Error fetching posts:", error);
         });
     }
-  }, [userID]);
+  }, [author_id]);
 
   return (
     <div className="container mx-auto px-4 py-8">

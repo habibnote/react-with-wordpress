@@ -1,35 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import UserContext from "../UserProvider.jsx/UserProvider";
 function Login() {
   // const [error, setError] = useState([]);
   // const [nonce, setNonce] = useState("");
   // const [isLoading, setIsLoading] = useState(true);
 
   // const [loggedIn, setLoggedIn] = useState(false);
-
-  // useEffect(() => {
-  //   fetchNonce();
-  // }, []);
-
-  // const fetchNonce = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       "http://localhost/wordpress/wp-json/custom-auth-api/v1/nonce"
-  //     );
-  //     const data = await response.json();
-  //     console.log("nonce", data);
-  //     // Cookies.set("custom_nonce", data.nonce);
-  //     localStorage.setItem("custom_nonce", data.nonce);
-  //     setNonce(data.nonce);
-  //     setIsLoading(false);
-  //   } catch (error) {
-  //     console.error("Error fetching nonce:", error);
-  //     setIsLoading(false);
-  //   }
-  // };
 
   const data = {
     username: "",
@@ -41,6 +21,7 @@ function Login() {
   const [inputData, setInputData] = useState(data);
   const navigate = useNavigate();
 
+  const { userID, setUserID } = useContext(UserContext);
   const handleChange = (e) => {
     setInputData({
       ...inputData,
@@ -120,10 +101,15 @@ function Login() {
         `${siteUrl}/wp-json/custom-login-api/v1/login`,
         loginData
       );
-      console.log("Login Response", response.data);
-      // if (response.data.success == true) {
-      //   navigate("/postform");
-      // }
+
+      if (response.data.success == true) {
+        console.log("res", response);
+
+        localStorage.setItem("nonce_value", nonceValue);
+        localStorage.setItem("author_id", response.data.author_id);
+        setUserID(response.data.author_id);
+        navigate("/postform");
+      }
       if (undefined === response.data.success) {
         setInputData({
           ...inputData,
@@ -138,6 +124,8 @@ function Login() {
     if (!inputData.username || !inputData.password) {
       alert("All Fields Are Required!");
     }
+
+    console.log("from login", userID);
   };
 
   return (

@@ -4,11 +4,12 @@ import UserContext from "../UserProvider.jsx/UserProvider";
 
 const Navbar = () => {
   const { userID, setUserID } = useContext(UserContext);
-  // console.log("logout id", userID);
+  console.log("logout id", userID);
+  const author_id = localStorage.getItem("author_id");
   const handlelogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userName");
-    setUserID("");
+    localStorage.removeItem("author_id");
+    localStorage.removeItem("nonce_value");
+    // setUserID("");
     navigate("/login");
   };
   return (
