@@ -41,8 +41,7 @@ const PostForm = () => {
     const token = localStorage.getItem("token");
     // const apiUrl = 'http://localhost/wordpress/wp-json/custom-post-submitter/v1/submit-post'; // Adjust the URL
 
-    const apiUrl =
-      "http://localhost/wordpress/wp-json/custom-post-submitter/v1/submit-post";
+    const apiUrl = `http://localhost/wordpress/wp-json/custom-post-submitter/v1/submit-post`;
 
     const newPost = {
       title: inputData.title,
@@ -52,10 +51,10 @@ const PostForm = () => {
     // .post(`${siteUrl}/wp-json/wp/v2/posts`, statusChangedPost, {
     axios
       .post(apiUrl, statusChangedPost, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
+        // headers: {
+        //   Authorization: `Bearer ${token}`,
+        //   "Content-Type": "application/json",
+        // },
       })
       .then((res) => {
         setInputData((prevState) => ({

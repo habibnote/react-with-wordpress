@@ -4,11 +4,11 @@ import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 function Login() {
-  const [error, setError] = useState([]);
-  const [nonce, setNonce] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+  // const [error, setError] = useState([]);
+  // const [nonce, setNonce] = useState("");
+  // const [isLoading, setIsLoading] = useState(true);
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  // const [loggedIn, setLoggedIn] = useState(false);
 
   // useEffect(() => {
   //   fetchNonce();
@@ -47,51 +47,99 @@ function Login() {
       [e.target.name]: e.target.value,
     });
   };
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const loginData = {
+  //     username: inputData.username,
+  //     password: inputData.password,
+  //   };
+
+  //   const siteUrl = "http://localhost/wordpress";
+
+  //   axios
+  //     .post(`${siteUrl}/wp-json/jwt-auth/v1/token`, loginData)
+  //     .then((response) => {
+  //       console.warn("loggedIn", response.data);
+  //       if (undefined === response.data.token) {
+  //         setInputData({
+  //           ...inputData,
+  //           error: response.data.message,
+  //         });
+  //         return;
+  //       }
+  //       const { token, user_nicename, user_email } = response.data;
+  //       localStorage.setItem("token", token);
+  //       localStorage.setItem("userName", user_nicename);
+  //       localStorage.setItem("user", JSON.stringify(response.data));
+  //       setInputData({
+  //         ...inputData,
+  //         token: token,
+  //         email: user_email,
+  //         userNiceName: user_nicename,
+  //         loggedIn: true,
+  //       });
+  //       navigate("/postform");
+  //     })
+  //     .catch((err) => {
+  //       setInputData({
+  //         ...inputData,
+  //         error: err.response.data,
+  //       });
+  //     });
+
+  //   if (!inputData.username || !inputData.email || !inputData.password) {
+  //     alert("All Fields Are Required!");
+  //   }
+  // };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const loginData = {
-      username: inputData.username,
-      password: inputData.password,
-    };
 
-    const siteUrl = "http://localhost/wordpress";
+    try {
+      const nonceResponse = await fetch(
+        "http://localhost/wordpress/wp-json/custom-login-api/v1/nonce"
+      );
+      const nonceData = await nonceResponse.json();
+      const nonceValue = nonceData.nonce_value;
+      console.log("NONCE", nonceValue);
+      if (!nonceValue) {
+        console.error("Nonce not available");
+        return;
+      }
 
-    axios
-      .post(`${siteUrl}/wp-json/jwt-auth/v1/token`, loginData)
-      .then((response) => {
-        console.warn("loggedIn", response.data);
-        if (undefined === response.data.token) {
-          setInputData({
-            ...inputData,
-            error: response.data.message,
-          });
-          return;
-        }
-        const { token, user_nicename, user_email } = response.data;
-        localStorage.setItem("token", token);
-        localStorage.setItem("userName", user_nicename);
-        localStorage.setItem("user", JSON.stringify(response.data));
+      const loginData = {
+        username: inputData.username,
+        password: inputData.password,
+        nonce_value: nonceValue,
+        nonce_action: "custom_login_nonce",
+      };
+
+      const siteUrl = "http://localhost/wordpress";
+
+      const response = await axios.post(
+        `${siteUrl}/wp-json/custom-login-api/v1/login`,
+        loginData
+      );
+      console.log("Login Response", response.data);
+      // if (response.data.success == true) {
+      //   navigate("/postform");
+      // }
+      if (undefined === response.data.success) {
         setInputData({
           ...inputData,
-          token: token,
-          email: user_email,
-          userNiceName: user_nicename,
-          loggedIn: true,
+          error: response.data.message,
         });
-        navigate("/postform");
-      })
-      .catch((err) => {
-        setInputData({
-          ...inputData,
-          error: err.response.data,
-        });
-      });
+        return;
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
 
-    if (!inputData.username || !inputData.email || !inputData.password) {
+    if (!inputData.username || !inputData.password) {
       alert("All Fields Are Required!");
     }
   };
-  // };
+
   return (
     <>
       <div className="flex justify-center items-center h-screen  bg-slate-400">
