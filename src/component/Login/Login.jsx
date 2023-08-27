@@ -55,11 +55,9 @@ function Login() {
     };
 
     const siteUrl = "http://localhost/wordpress";
-    const apiUrl =
-      "http://localhost/wordpress/wp-json/custom-post-submitter/v1/submit-post";
+
     axios
-      // .post(`${siteUrl}/wp-json/jwt-auth/v1/token`, loginData)
-      .post("apiUrl", loginData)
+      .post(`${siteUrl}/wp-json/jwt-auth/v1/token`, loginData)
       .then((response) => {
         console.warn("loggedIn", response.data);
         if (undefined === response.data.token) {

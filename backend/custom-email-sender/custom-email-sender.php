@@ -54,3 +54,39 @@ function custom_post_submitter_rest_submit_post($request) {
     return array('success' => false);
 }
 
+
+//get req
+function custom_rest_get_handle_request($request) {
+    $user_id = $request->get_param('user_id'); 
+
+   
+    $args = array(
+        'author' => $user_id,
+        'post_status' => 'publish',
+        'posts_per_page' => -1, // Retrieve all posts
+    );
+
+    $posts_query = new WP_Query($args);
+    $posts = $posts_query->get_posts();
+
+
+    $post_data = array();
+    foreach ($posts as $post) {
+        $post_data[] = array(
+            'title' => $post->post_title,
+            'content' => $post->post_content,
+          
+        );
+    }
+
+
+    return new WP_REST_Response($post_data, 200);
+}
+
+add_action('rest_api_init', function () {
+    register_rest_route('custom-rest-get-plugin/v1', 'get-posts/(?P<user_id>\d+)', array(
+        'methods' => 'GET',
+        'callback' => 'custom_rest_get_handle_request',
+    ));
+});
+

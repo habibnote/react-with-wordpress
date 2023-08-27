@@ -13,16 +13,15 @@ const AllPost = () => {
   useEffect(() => {
     if (userID) {
       // console.log("custom_nonce", custom_nonce);
+
+      //  .get(`http://localhost/wordpress/wp-json/wp/v2/posts?author=${userID}`)
+      axios;
       axios
         .get(
-          `http://localhost/wordpress/wp-json/wp/v2/posts?author=${userID}`
-          // {
-          //   headers: {
-          //     "X-WP-Nonce": custom_nonce,
-          //   },
-          // }
+          `http://localhost/wordpress/wp-json/custom-rest-get-plugin/v1/get-posts/${userID}`
         )
         .then((response) => {
+          console.log("get", response);
           setUserPosts(response.data);
         })
         .catch((error) => {
@@ -35,14 +34,17 @@ const AllPost = () => {
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-4">All Posts</h1>
       <div className="grid grid-cols-3 gap-4">
-        {post.map((post) => (
-          <div key={post.id} className="bg-white shadow-md p-4 rounded-md">
-            <h2 className="text-lg font-semibold mb-2">
-              {post.title.rendered}
-            </h2>
-            <div className="text-gray-600">{post.excerpt.rendered}</div>
-          </div>
-        ))}
+        {post.lenght === 0 ? (
+          <p>Loading...</p>
+        ) : (
+          post.map((post) => (
+            <div key={post.id} className="bg-white shadow-md p-4 rounded-md">
+              <h2 className="text-lg font-semibold mb-2">{post.title}</h2>
+              <h2 className="text-lg font-semibold mb-2">{post.content}</h2>
+              {/* <div className="text-gray-600">{post.excerpt}</div> */}
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

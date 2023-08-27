@@ -37,16 +37,21 @@ const PostForm = () => {
 
     console.log("post", inputData);
 
-    const siteUrl = "http://localhost/wordpress";
+    // const siteUrl = "http://localhost/wordpress";
     const token = localStorage.getItem("token");
     // const apiUrl = 'http://localhost/wordpress/wp-json/custom-post-submitter/v1/submit-post'; // Adjust the URL
+
+    const apiUrl =
+      "http://localhost/wordpress/wp-json/custom-post-submitter/v1/submit-post";
+
     const newPost = {
       title: inputData.title,
       content: inputData.content,
     };
     const statusChangedPost = { ...newPost, status: "publish" };
+    // .post(`${siteUrl}/wp-json/wp/v2/posts`, statusChangedPost, {
     axios
-      .post(`${siteUrl}/wp-json/wp/v2/posts`, statusChangedPost, {
+      .post(apiUrl, statusChangedPost, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
