@@ -29,3 +29,28 @@ function send_email_after_post_creation($post_ID, $post, $update) {
 }
 
 
+add_action('rest_api_init', function () {
+    register_rest_route('custom-post-submitter/v1', 'submit-post', array(
+        'methods' => 'POST',
+        'callback' => 'custom_post_submitter_rest_submit_post',
+    ));
+});
+
+
+
+// custom post
+function custom_post_submitter_rest_submit_post($request) {
+    $data = $request->get_json_params();
+
+    if (isset($data['title']) && isset($data['content'])) {
+        $title = sanitize_text_field($data['title']);
+        $content = wp_kses_post($data['content']);
+
+        if (custom_post_submitter_submit_post($title, $content)) {
+            return array('success' => true);
+        }
+    }
+
+    return array('success' => false);
+}
+

@@ -39,7 +39,7 @@ const PostForm = () => {
 
     const siteUrl = "http://localhost/wordpress";
     const token = localStorage.getItem("token");
-
+    // const apiUrl = 'http://localhost/wordpress/wp-json/custom-post-submitter/v1/submit-post'; // Adjust the URL
     const newPost = {
       title: inputData.title,
       content: inputData.content,
