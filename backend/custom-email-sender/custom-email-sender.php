@@ -29,64 +29,64 @@ function send_email_after_post_creation($post_ID, $post, $update) {
 }
 
 
-add_action('rest_api_init', function () {
-    register_rest_route('custom-post-submitter/v1', 'submit-post', array(
-        'methods' => 'POST',
-        'callback' => 'custom_post_submitter_rest_submit_post',
-    ));
-});
+// add_action('rest_api_init', function () {
+//     register_rest_route('custom-post-submitter/v1', 'submit-post', array(
+//         'methods' => 'POST',
+//         'callback' => 'custom_post_submitter_rest_submit_post',
+//     ));
+// });
 
 
 
-// custom post
-function custom_post_submitter_rest_submit_post($request) {
-    $data = $request->get_json_params();
+// // custom post
+// function custom_post_submitter_rest_submit_post($request) {
+//     $data = $request->get_json_params();
 
-    if (isset($data['title']) && isset($data['content'])) {
-        $title = sanitize_text_field($data['title']);
-        $content = wp_kses_post($data['content']);
+//     if (isset($data['title']) && isset($data['content'])) {
+//         $title = sanitize_text_field($data['title']);
+//         $content = wp_kses_post($data['content']);
 
-        if (custom_post_submitter_submit_post($title, $content)) {
-            return array('success' => true);
-        }
-    }
+//         if (custom_post_submitter_submit_post($title, $content)) {
+//             return array('success' => true);
+//         }
+//     }
 
-    return array('success' => false);
-}
+//     return array('success' => false);
+// }
 
 
 //get req
-function custom_rest_get_handle_request($request) {
-    $user_id = $request->get_param('user_id'); 
+// function custom_rest_get_handle_request($request) {
+//     $user_id = $request->get_param('user_id'); 
 
    
-    $args = array(
-        'author' => $user_id,
-        'post_status' => 'publish',
-        'posts_per_page' => -1, // Retrieve all posts
-    );
+//     $args = array(
+//         'author' => $user_id,
+//         'post_status' => 'publish',
+//         'posts_per_page' => -1, // Retrieve all posts
+//     );
 
-    $posts_query = new WP_Query($args);
-    $posts = $posts_query->get_posts();
+//     $posts_query = new WP_Query($args);
+//     $posts = $posts_query->get_posts();
 
 
-    $post_data = array();
-    foreach ($posts as $post) {
-        $post_data[] = array(
-            'title' => $post->post_title,
-            'content' => $post->post_content,
+//     $post_data = array();
+//     foreach ($posts as $post) {
+//         $post_data[] = array(
+//             'title' => $post->post_title,
+//             'content' => $post->post_content,
           
-        );
-    }
+//         );
+//     }
 
 
-    return new WP_REST_Response($post_data, 200);
-}
+//     return new WP_REST_Response($post_data, 200);
+// }
 
-add_action('rest_api_init', function () {
-    register_rest_route('custom-rest-get-plugin/v1', 'get-posts/(?P<user_id>\d+)', array(
-        'methods' => 'GET',
-        'callback' => 'custom_rest_get_handle_request',
-    ));
-});
+// add_action('rest_api_init', function () {
+//     register_rest_route('custom-rest-get-plugin/v1', 'get-posts/(?P<user_id>\d+)', array(
+//         'methods' => 'GET',
+//         'callback' => 'custom_rest_get_handle_request',
+//     ));
+// });
 
